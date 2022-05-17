@@ -2,7 +2,6 @@ from itertools import combinations, permutations
 from typing import Iterable, List, Tuple
 from src.card_deck import Card
 from src.ui import UI
-import numpy as np
 
 
 class CribbageHandAnalyzer:
@@ -83,7 +82,7 @@ class CribbageHandAnalyzer:
             for combo in combos:
                 combo_sorted_by_rank = sorted(combo, key=lambda x: x.rank)
                 card_ranks = list(map(lambda x: x.rank, combo_sorted_by_rank))
-                rank_differences = np.diff(card_ranks)
+                rank_differences = self._custom_diff(card_ranks)
                 if not (rank_differences == 1).all():
                     continue
                 elif combo_sorted_by_rank in matched_runs:
@@ -95,6 +94,13 @@ class CribbageHandAnalyzer:
                 matched_runs.append(combo_sorted_by_rank)
         UI().display_score_template("Runs", run_points)
         return run_points
+
+    @staticmethod
+    def _custom_diff(items_to_diff: List[int]):
+        diff_list = []
+        for index in range(1, len(items_to_diff)):
+            diff_list.append(items_to_diff[index] - items_to_diff[index - 1])
+        return diff_list
 
     def _check_for_duplicate_runs(
         self, combo_sorted_by_rank: List[Card], matched_runs: List[List[Card]]
