@@ -1,4 +1,4 @@
-#!/home/christrj/anaconda3/envs/py10/bin/python
+#! /usr/bin/python3
 """[summary]
 
 Returns:
