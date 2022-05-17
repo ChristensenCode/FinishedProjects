@@ -21,8 +21,8 @@ def run_game():
     number_of_players = 2
 
     players = PlayerFactory(player_count=number_of_players).get_players()
-    for player in players:
-        player.total_score += 100
+    # for player in players:
+    # player.total_score += 100
     game_running = True
     while game_running:
         # TODO create a library for a deck of cards
