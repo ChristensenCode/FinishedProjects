@@ -43,14 +43,14 @@ def another_tight_loop(D):
             p_list.append(a_0 * a_1 + 1)
             n += 1
             if p_list[-1] * p_list[-1] - D * q_list[-1] * q_list[-1] == 1.0:
-                return p_list[-1], q_list[-1]
+                return p_list[-1]
             continue
         new_q = a_values[n] * q_list[n - 1] + q_list[n - 2]
         new_p = a_values[n] * p_list[n - 1] + p_list[n - 2]
         q_list.append(new_q)
         p_list.append(new_p)
         if p_list[-1] * p_list[-1] - D * q_list[-1] * q_list[-1] == 1:
-            return p_list[-1], q_list[-1]
+            return p_list[-1]
         n += 1
 
 
@@ -58,8 +58,7 @@ def another_main():
     non_perfects = filter(lambda x: not math.sqrt(x).is_integer(), range(2, 1001))
     x_s = {}
     for non_perfect in non_perfects:
-        x, y = another_tight_loop(non_perfect)
-        x_s[non_perfect] = x
+        x_s[non_perfect] = another_tight_loop(non_perfect)
     return max(x_s, key=x_s.get)
 
 
