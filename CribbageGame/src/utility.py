@@ -41,7 +41,12 @@ def check_card_in_range(indexes_to_check: List[str], length_of_hand: int) -> boo
 def check_duplicate_card_index(indexes_to_check: List[str]) -> bool:
     if len(indexes_to_check) == 1:
         return True
-    return True if len(set(indexes_to_check)) == len(indexes_to_check) else False
+
+    elif len(set(indexes_to_check)) == 1:
+        print(f"You can't pick the same card twice! Try again.")
+        return False
+    
+    return True
 
 
 def check_user_provided_data(
