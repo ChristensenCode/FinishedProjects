@@ -83,7 +83,8 @@ class CribbageHandAnalyzer:
                 combo_sorted_by_rank = sorted(combo, key=lambda x: x.rank)
                 card_ranks = list(map(lambda x: x.rank, combo_sorted_by_rank))
                 rank_differences = self._custom_diff(card_ranks)
-                if not all(rank_differences) == 1:
+                
+                if not all(x == 1 for x in rank_differences):
                     continue
                 elif combo_sorted_by_rank in matched_runs:
                     continue
